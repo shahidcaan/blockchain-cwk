@@ -1,4 +1,3 @@
-
 const {expect} = require("chai");
 const {ethers} = require("hardhat");
 
@@ -32,6 +31,8 @@ describe("Twitter Contract", function() {
       totalTweets.push(tweet);
     }
 
+    
+
     for(let i=0; i<NUM_TOTAL_MY_TWEETS; i++) {
       let tweet = {
         'username': owner,
@@ -46,7 +47,7 @@ describe("Twitter Contract", function() {
   });
 
   describe("Add Tweet", function() {
-    it("should emit AddTweet event", async function() {
+    it("It emits AddTweet event", async function() {
       let tweet = {
         'tweetText': 'New Tweet',
         'isDeleted': false
@@ -57,20 +58,20 @@ describe("Twitter Contract", function() {
     })
   });
 
-  describe("Get Tweets", function() {
-    it("should return the correct number of total tweets", async function() {
+  describe("Get all the Tweets", function() {
+    it("It returns the correct number of total tweets", async function() {
       const tweetsFromChain = await twitter.getAllTweets();
       expect(tweetsFromChain.length).to.equal(NUM_TOTAL_NOT_MY_TWEETS+NUM_TOTAL_MY_TWEETS);
     })
 
-    it("should return the correct number of all my tweets", async function() {
+    it("It returns the correct number of all my tweets", async function() {
       const myTweetsFromChain = await twitter.getMyTweets();
       expect(myTweetsFromChain.length).to.equal(NUM_TOTAL_MY_TWEETS);
     })
   })
 
   describe("Delete Tweet", function() {
-    it("should emit delete tweet event", async function() {
+    it("It emits delete tweet event", async function() {
       const TWEET_ID = 0;
       const TWEET_DELETED = true;
 
